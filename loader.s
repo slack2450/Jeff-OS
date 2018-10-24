@@ -21,42 +21,44 @@ align 4                                         ; the code must be 4 byte aligne
     dd FLAGS                                    ; the flags,
     dd CHECKSUM                                 ; and the checksum
 
-loader:                                         ; the loader label (defined as entry point in linker script)
-
 gdt:
     
-gdt_null:
-    dq 0
-gdt_code:
-    dw 0FFFFh
-    dw 0
+    gdt_null:
+        dq 0
+    gdt_code:
+        dw 0FFFFh
+        dw 0
+        db 0
+        db 10011010b
+        db 11001111b
+        db 0
+    gdt_data:
+        dw 0FFFFh
+        dw 0
     db 0
-    db 10011010b
+    db 10010010b
     db 11001111b
     db 0
-gdt_data:
-    dw 0FFFFh
-    dw 0
-db 0
-db 10010010b
-db 11001111b
-db 0
 gdt_end
     
 gdt_desc:
     dw gdt_end - gdt - 1
     dd gdt
+
+
+loader:                                         ; the loader label (defined as entry point in linker script)
+
     
-lgdt [gdt_desc]
-jmp 0x0008:fix_cs
-fix_cs:
-mov ax, 0x0010
-mov ds, ax
-mov es, ax
-mov fs, ax
-mov gs, ax
-mov ss, ax
-mov esp, stack_space   ;set stack pointer
+    lgdt [gdt_desc]
+    jmp 0x0008:fix_cs
+    fix_cs:
+    mov ax, 0x0010
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    mov esp, stack_space   ;set stack pointer
 
     mov eax, 0xCAFEBABE                         ; place the number 0xCAFEBABE in the register eax
     call main
