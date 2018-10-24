@@ -16,6 +16,7 @@ struct IDT_entry IDT[286];
 void idt_init(void) {
     extern int load_idt();
 
+    unsigned long idt_address;
 	unsigned long idt_ptr[2]; 
  
 	/* fill the IDT descriptor */
