@@ -23,5 +23,19 @@ int main()
         fb_write_cell(i, welcomeMessage[i], FB_GREEN, FB_BLACK);
     }
 
+    bool bit;
+    while(true)
+    {
+        bool bit = !bit;
+        if(bit)
+        {
+            fb_write_cell(20, ' ', FB_GREEN, FB_GREEN);
+        }
+        else
+        {
+            fb_write_cell(20, ' ', FB_BLACK, FB_BLACK);
+        }
+    }
+
     return 0x69;
 }
