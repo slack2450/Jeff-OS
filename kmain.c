@@ -23,16 +23,17 @@ int main()
         fb_write_cell(i, welcomeMessage[i], FB_GREEN, FB_BLACK);
     }
 
-    bool bit;
-    while(true)
+    int bit;
+    while(1 == 1)
     {
-        bool bit = !bit;
-        if(bit)
+        if(bit == 1)
         {
+            bit = 0;
             fb_write_cell(20, ' ', FB_GREEN, FB_GREEN);
         }
         else
         {
+            bit = 1;
             fb_write_cell(20, ' ', FB_BLACK, FB_BLACK);
         }
     }
