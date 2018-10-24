@@ -1,5 +1,6 @@
 // we can run things here in C!
 #include "fb.h"
+#include "idt.h"
 
 void clear_screen()
 {
@@ -12,6 +13,8 @@ void clear_screen()
 int main()
 {
     clear_screen();
+
+    load_idt();
 
     char welcomeMessage[] = "Welcome to Jeff OS!";
 
