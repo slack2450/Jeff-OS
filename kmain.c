@@ -14,7 +14,7 @@ int main()
 {
     clear_screen();
 
-    load_idt();
+    idt_init();
 
     char welcomeMessage[] = "Welcome to Jeff OS!";
 
