@@ -39,7 +39,7 @@ gdt:
     db 10010010b
     db 11001111b
     db 0
-gdt_end
+gdt_end:
     
 gdt_desc:
     dw gdt_end - gdt - 1
@@ -58,7 +58,7 @@ loader:                                         ; the loader label (defined as e
     mov fs, ax
     mov gs, ax
     mov ss, ax
-    mov esp, stack_space   ;set stack pointer
+    mov esp, kernel_stack   ;set stack pointer
 
     mov eax, 0xCAFEBABE                         ; place the number 0xCAFEBABE in the register eax
     call main
