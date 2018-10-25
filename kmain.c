@@ -3,7 +3,6 @@
 #include "isr.h"
 #include "descriptor_tables.h"
 
-u32int cursor = 20;
 u32int text = 0;
 unsigned char character;
 
@@ -19,8 +18,7 @@ static void keyboard_callback(registers_t regs)
     character = read_scan_code();
     if(characters[character] != 0x00)
     {
-        fb_write_cell(cursor, characters[character], FB_GREEN, FB_BLACK);
-        cursor++;
+        fb_put_char(characters[character], FB_GREEN, FB_BLACK);
     }
     text = regs.int_no;
     return;
