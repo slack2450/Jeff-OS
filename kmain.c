@@ -7,7 +7,7 @@ u32int test_cursor = 20;
 u32int text = 0;
 unsigned char character;
 
-char characters[0xFF] = {};
+char characters[0xFF];
 
 unsigned char read_scan_code(void)
 {
