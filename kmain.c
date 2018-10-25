@@ -20,6 +20,10 @@ static void keyboard_callback(registers_t regs)
     {
         fb_put_char(characters[character], FB_GREEN, FB_BLACK);
     }
+    else
+    {
+        fb_put_char('?', FB_GREEN, FB_BLACK);
+    }
     text = regs.int_no;
     return;
 }

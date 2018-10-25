@@ -20,7 +20,7 @@ short fb_get_index()
 void fb_increment_index()
 {
     cursor++;
-    if(row % 80 == 0)
+    if(row % 80 == 0 && row != 0)
     {
         row++;
         cursor=0;
