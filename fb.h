@@ -1,7 +1,5 @@
 #include "io.h"
 
-char *fb = (char *) 0x000B8000;
-
 /* The I/O ports */
 #define FB_COMMAND_PORT         0x3D4
 #define FB_DATA_PORT            0x3D5
@@ -33,13 +31,7 @@ char *fb = (char *) 0x000B8000;
  *
  *  @param pos The new position of the cursor
  */
-void fb_move_cursor(unsigned short pos)
-{
-    outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
-    outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
-    outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
-    outb(FB_DATA_PORT,    pos & 0x00FF);
-}
+void fb_move_cursor(unsigned short pos);
 
 /** fb_write_cell
  *  Writes a character with the given foreground and background to position i
@@ -50,9 +42,6 @@ void fb_move_cursor(unsigned short pos)
  *  @param fg The foreground colour
  *  @param bg The background colour
  */
-void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
-{
-    i*=2;
-    fb[i] = c;
-    fb[i+1] = (fg & 0x0F) | ((bg & 0x0F) << 4);
-}
+void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
+
+void fb_clear_screen();
