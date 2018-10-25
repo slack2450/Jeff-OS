@@ -26,5 +26,7 @@ loader:                                         ; the loader label (defined as e
     mov eax, 0xCAFEBABE                         ; place the number 0xCAFEBABE in the register eax
     call main
 
+    int 0x03
+
 .loop:
     jmp .loop                                   ; loop forever

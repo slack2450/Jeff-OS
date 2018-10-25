@@ -3,6 +3,7 @@
 #include "isr.h"
 #include "descriptor_tables.h"
 
+u32int cursor = 20;
 u32int text = 0;
 unsigned char character;
 
@@ -18,11 +19,8 @@ static void keyboard_callback(registers_t regs)
     character = read_scan_code();
     if(characters[character] != 0x00)
     {
-        fb_put_char(characters[character], FB_GREEN, FB_BLACK);
-    }
-    else
-    {
-        fb_put_char('?', FB_GREEN, FB_BLACK);
+        fb_write_cell(cursor, characters[character], FB_GREEN, FB_BLACK);
+        cursor++;
     }
     text = regs.int_no;
     return;
@@ -72,8 +70,6 @@ int main()
     setup_keyboard();
 
     fb_put_string("Welcome to Jeff OS!", FB_GREEN, FB_BLACK);
-    fb_new_line();
-    fb_put_string("User@Jeff-OS ~$", FB_GREEN, FB_BLACK);
 
     return 0x69;
 }
