@@ -69,12 +69,7 @@ int main()
 
     setup_keyboard();
 
-    char welcomeMessage[] = "Welcome to Jeff OS!";
-
-    for(int i = 0; i < 19; i++)
-    {
-        fb_write_cell(i, welcomeMessage[i], FB_GREEN, FB_BLACK);
-    }
+    fb_put_string("Welcome to Jeff OS!", FB_GREEN, FB_BLACK);
 
     return 0x69;
 }
