@@ -38,6 +38,23 @@ static void setup_keyboard(void)
     characters[0x17] = 'i';
     characters[0x18] = 'o';
     characters[0x19] = 'p';
+    characters[0x2C] = 'z';
+    characters[0x2D] = 'x';
+    characters[0x2E] = 'c';
+    characters[0x2F] = 'v';
+    characters[0x30] = 'b';
+    characters[0x31] = 'n';
+    characters[0x32] = 'm';
+    characters[0x33] = 'b';
+    characters[0x3E] = 'a';
+    characters[0x3F] = 's';
+    characters[0x40] = 'd';
+    characters[0x41] = 'f';
+    characters[0x42] = 'g';
+    characters[0x43] = 'h';
+    characters[0x44] = 'j';
+    characters[0x45] = 'k';
+    characters[0x46] = 'l';
 
     register_interrupt_handler(IRQ1, &keyboard_callback);
     return;
