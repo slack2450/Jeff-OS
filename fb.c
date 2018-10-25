@@ -29,6 +29,6 @@ void fb_clear_screen()
 
 void fb_put_char(char c, unsigned char fg, unsigned char bg)
 {
-    fb_put_char(fb_cursor, c, fb, bg);
+    fb_put_char(fb_cursor, c, fg, bg);
     fb_cursor++;
 }
