@@ -46,4 +46,5 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
 
 void fb_clear_screen();
 
-void fb_put_string(char* c, unsigned char fg, unsigned char bg)
+void fb_put_char(char c, unsigned char fg, unsigned char bg);
+void fb_put_string(char* c, unsigned char fg, unsigned char bg);
