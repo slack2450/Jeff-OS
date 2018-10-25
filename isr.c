@@ -18,7 +18,7 @@ int interrupt_handler(registers_t regs)
 
     for(int i = 0; i < 8; i++)
     {
-        fb_write_cell(i, welcomeMessage[i], FB_GREEN, FB_BLACK);
+        fb_put_char(welcomeMessage[i], FB_GREEN, FB_BLACK);
     }
     return regs.int_no;
 } 

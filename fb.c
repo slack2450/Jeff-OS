@@ -1,6 +1,8 @@
 #include "fb.h"
 
 char *fb = (char *) 0x000B8000;
+int fb_cursor   = 0;
+int fb_row      = 0;
 
 void fb_move_cursor(unsigned short pos)
 {
@@ -23,4 +25,10 @@ void fb_clear_screen()
     {
         fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
     }
+}
+
+void fb_put_char(char c, unsigned char fg, unsigned char bg)
+{
+    fb_put_char(fb_cursor, c, fb, bg);
+    fb_cursor++;
 }
