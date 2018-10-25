@@ -59,3 +59,9 @@ void fb_put_string(char* c, unsigned char fg, unsigned char bg)
         i++;
     }
 }
+
+void fb_new_line()
+{
+    row++;
+    cursor = 0;
+}

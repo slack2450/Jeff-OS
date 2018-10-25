@@ -72,6 +72,8 @@ int main()
     setup_keyboard();
 
     fb_put_string("Welcome to Jeff OS!", FB_GREEN, FB_BLACK);
+    fb_new_line();
+    fb_put_string("User@Jeff-OS ~$", FB_GREEN, FB_BLACK);
 
     return 0x69;
 }
