@@ -57,6 +57,7 @@ void fb_new_line()
 {
     fb_row++;
     fb_cursor = 0;
+    fb_scroll();
 }
 
 void fb_backspace(unsigned char fg, unsigned char bg)
