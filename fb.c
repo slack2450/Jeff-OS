@@ -68,10 +68,10 @@ void fb_backspace(unsigned char fg, unsigned char bg)
 
 void fb_put_char(char c, unsigned char fg, unsigned char bg)
 {
+    fb_scroll();
     fb_write_cell(fb_get_pointer(), c, fg, bg);
     fb_increment_cursor();
     fb_move_cursor(fb_get_pointer());
-    fb_scroll();
 }
 
 void fb_put_string(char* c, unsigned char fg, unsigned char bg)
