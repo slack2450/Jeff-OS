@@ -13,12 +13,6 @@ isr_t interrupt_handlers[256];
 // This gets called from our ASM interrupt handler stub.
 int interrupt_handler(registers_t regs)
 {
-    char welcomeMessage[] = "Interupt";
-
-    for(int i = 0; i < 8; i++)
-    {
-        fb_put_char(welcomeMessage[i], FB_GREEN, FB_BLACK);
-    }
     return regs.int_no;
 } 
 

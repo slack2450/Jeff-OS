@@ -5,6 +5,9 @@
 //                       Rewritten for JamesM's kernel development tutorials.
 //
 
+#ifndef DESCRIPTOR_TABLES_H
+#define DESCRIPTOR_TABLES_H
+
 #include "common.h"
 #include "io.h"
 
@@ -109,3 +112,5 @@ extern void irq12();
 extern void irq13();
 extern void irq14();
 extern void irq15();
+
+#endif

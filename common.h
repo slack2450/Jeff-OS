@@ -13,6 +13,13 @@ typedef          short s16int;
 typedef unsigned char  u8int;
 typedef          char  s8int;
 
+typedef enum
+{
+  FALSE,
+  TRUE
+} bool;
+
 void* memset(void* bufptr, int value, unsigned int size);
+bool  strcmp(char* a, char* b);
 
 #endif
