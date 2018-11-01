@@ -1,8 +1,3 @@
-//
-// isr.c -- High level interrupt service routines and interrupt request handlers.
-// Part of this code is modified from Bran's kernel development tutorials.
-// Rewritten for JamesM's kernel development tutorials.
-//
 
 #include "common.h"
 #include "isr.h"
@@ -13,13 +8,6 @@ isr_t interrupt_handlers[256];
 // This gets called from our ASM interrupt handler stub.
 int interrupt_handler(registers_t regs)
 {
-    fb_clear_screen();
-    char welcomeMessage[] = "Interupt";
-
-    for(int i = 0; i < 8; i++)
-    {
-        fb_write_cell(i, welcomeMessage[i], FB_GREEN, FB_BLACK);
-    }
     return regs.int_no;
 } 
 

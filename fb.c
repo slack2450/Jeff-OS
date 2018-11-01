@@ -36,32 +36,84 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
 
 void fb_clear_screen()
 {
-    row = 0;
-    cursor = 0;
+    fb_move_cursor(0);
+    fb_cursor = 0;
+    fb_row = 0;
     for(int i = 0; i < 80 * 25; i++)
     {
-        fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
+        fb_write_cell(i, ' ', FB_WHITE, FB_BLACK);
     }
 }
 
-void fb_put_char(char c, unsigned char fg, unsigned char bg)
+void fb_increment_cursor()
 {
-    fb_write_cell(fb_get_index(), c, fg, bg);
-    fb_increment_index();
-}
-
-void fb_put_string(char* c, unsigned char fg, unsigned char bg)
-{
-    int i = 0;
-    while(c[i])
+    fb_cursor++;
+    if(fb_cursor == 80)
     {
-        fb_put_char(c[i], fg, bg);
-        i++;
+        fb_row++;
+        fb_cursor = 0;
     }
+}
+
+void fb_decrement_cursor()
+{
+    if(fb_cursor == 0)
+    {
+        fb_row--;
+        fb_cursor = 80;
+    }
+    fb_cursor--;
+}
+
+int fb_get_pointer()
+{
+    return 80 * fb_row + fb_cursor;
 }
 
 void fb_new_line()
 {
-    row++;
-    cursor = 0;
+    fb_row++;
+    fb_cursor = 0;
+    fb_scroll();
+}
+
+void fb_backspace(unsigned char fg, unsigned char bg)
+{
+    fb_decrement_cursor();
+    fb_write_cell(fb_get_pointer(), ' ', fg, bg);
+    fb_move_cursor(fb_get_pointer());
+}
+
+void fb_put_char(char c, unsigned char fg, unsigned char bg)
+{
+    fb_write_cell(fb_get_pointer(), c, fg, bg);
+    fb_increment_cursor();
+    fb_scroll();
+    fb_move_cursor(fb_get_pointer());
+}
+
+void fb_put_string(char* c, unsigned char fg, unsigned char bg)
+{
+    for(int i = 0; c[i] != 0x00; i++)
+    {
+        fb_put_char(c[i], fg, bg);
+    }
+}
+
+void fb_scroll()
+{
+    if(fb_row >= 25)
+    {
+        int i;
+        for(i = 0*80; i < 24 * 2 * 80; i++)
+        {
+            fb[i] = fb[i+80*2];
+        }
+
+        for(i = 24 * 80; i < 25 * 80; i++)
+        {
+            fb_write_cell(i, ' ', FB_WHITE, FB_BLACK);
+        }
+        fb_row = 24;
+    }
 }

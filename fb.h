@@ -45,7 +45,11 @@ void fb_move_cursor(unsigned short pos);
 void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
 
 void fb_clear_screen();
-
 void fb_put_char(char c, unsigned char fg, unsigned char bg);
 void fb_put_string(char* c, unsigned char fg, unsigned char bg);
 void fb_new_line();
+void fb_backspace(unsigned char fg, unsigned char bg);
+void fb_scroll();
+
+int fb_cursor;
+int fb_row;
