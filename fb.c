@@ -57,6 +57,7 @@ void fb_new_line()
 {
     fb_row++;
     fb_cursor = 0;
+    fb_scroll();
 }
 
 void fb_backspace(unsigned char fg, unsigned char bg)
@@ -70,6 +71,7 @@ void fb_put_char(char c, unsigned char fg, unsigned char bg)
 {
     fb_write_cell(fb_get_pointer(), c, fg, bg);
     fb_increment_cursor();
+    fb_scroll();
     fb_move_cursor(fb_get_pointer());
 }
 
@@ -78,5 +80,23 @@ void fb_put_string(char* c, unsigned char fg, unsigned char bg)
     for(int i = 0; c[i] != 0x00; i++)
     {
         fb_put_char(c[i], fg, bg);
+    }
+}
+
+void fb_scroll()
+{
+    if(fb_row >= 25)
+    {
+        int i;
+        for(i = 0*80; i < 24 * 2 * 80; i++)
+        {
+            fb[i] = fb[i+80*2];
+        }
+
+        for(i = 24 * 80; i < 25 * 80; i++)
+        {
+            fb_write_cell(i, ' ', FB_WHITE, FB_BLACK);
+        }
+        fb_row = 24;
     }
 }

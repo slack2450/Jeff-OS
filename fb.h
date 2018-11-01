@@ -49,6 +49,7 @@ void fb_put_char(char c, unsigned char fg, unsigned char bg);
 void fb_put_string(char* c, unsigned char fg, unsigned char bg);
 void fb_new_line();
 void fb_backspace(unsigned char fg, unsigned char bg);
+void fb_scroll();
 
 int fb_cursor;
 int fb_row;
