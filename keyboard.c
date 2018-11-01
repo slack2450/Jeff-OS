@@ -72,17 +72,30 @@ void keyboard_callback(registers_t regs)
                 }
                 break;
             case SCAN_CODE_ENTER:
+                fb_new_line();
                 if(strcmp("help", keyboard_input_buffer) == TRUE)
                 {
                     fb_new_line();
                     fb_put_string("HELP MENU:", FB_CYAN, FB_BLACK);
                     fb_new_line();
                     fb_new_line();
-                    fb_put_string("Work in progress...", FB_CYAN, FB_BLACK);
+                    fb_put_string("clear - Clears the screen", FB_CYAN, FB_BLACK);
+                    fb_new_line();
+                    fb_put_string("help  - Prints this help menu", FB_CYAN, FB_BLACK);
+                    fb_new_line();
+                    fb_new_line();
+                }
+                else if(strcmp("clear", keyboard_input_buffer) == TRUE)
+                {
+                    fb_clear_screen();
+                }
+                else
+                {
+                    fb_put_string("Unrecognised command: ", FB_RED, FB_BLACK);
+                    fb_put_string(keyboard_input_buffer, FB_RED, FB_BLACK);
                     fb_new_line();
                 }
                 keyboard_input_buffer_clear();
-                fb_new_line();
                 fb_put_string("User@Jeff:~$ ", FB_LIGHT_BLUE, FB_BLACK);
                 break;
             case SCAN_CODE_L_SHIFT_DOWN:
